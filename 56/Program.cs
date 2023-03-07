@@ -76,7 +76,7 @@ void PrintTwoDimIntArray(int[,] twoDimIntArray1)
             rowsSum[i] = rowsSum[i] + twoDimIntArray1[i,j];
             Console.Write($"{twoDimIntArray1[i,j]} ");
         }
-        Console.WriteLine($" -> Сумма элементов строки {rowsSum[i]}");
+        // Console.WriteLine($" -> Сумма элементов строки {rowsSum[i]}"); Выведет сумму элеметов в важдой строке
     }
 }
 
