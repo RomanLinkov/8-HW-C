@@ -18,7 +18,7 @@ FillTwoDimIntArray(twoDimIntArray);
 
 PrintTwoDimIntArray(twoDimIntArray);
 
-Console.WriteLine($"Строка с максимальной суммой элементов: {SearchMaxSumRow(twoDimIntArray)+1}");
+Console.WriteLine($"Строка c наименьшей суммой элементов, нумерация строк с 1: {SearchMinSumRow(twoDimIntArray)+1}");
 
 void FillTwoDimIntArray(int[,] TwoDimIntArray2)
 {
@@ -36,7 +36,7 @@ void FillTwoDimIntArray(int[,] TwoDimIntArray2)
     }
 }
 
-int SearchMaxSumRow(int[,] twoDimIntArray1)
+int SearchMinSumRow(int[,] twoDimIntArray1)
 {
     int rows=twoDimIntArray1.GetLength(0); // число строк
     int columns=twoDimIntArray1.GetLength(1); // число столбцов
@@ -54,7 +54,7 @@ int SearchMaxSumRow(int[,] twoDimIntArray1)
     int imax = 0;
     for (int i = 1; i < rows; i++)
     {
-        if (rowMaxSum < rowsSum[i]) 
+        if (rowMaxSum > rowsSum[i]) 
         {
             rowMaxSum=rowsSum[i];
             imax = i;
@@ -76,6 +76,7 @@ void PrintTwoDimIntArray(int[,] twoDimIntArray1)
             rowsSum[i] = rowsSum[i] + twoDimIntArray1[i,j];
             Console.Write($"{twoDimIntArray1[i,j]} ");
         }
+        Console.WriteLine();
         // Console.WriteLine($" -> Сумма элементов строки {rowsSum[i]}"); Выведет сумму элеметов в важдой строке
     }
 }
