@@ -24,8 +24,8 @@ void FillTwoDimIntArray(int[,] TwoDimIntArray2)
 {
     int rows1=TwoDimIntArray2.GetLength(0); // число строк
     int columns1=TwoDimIntArray2.GetLength(1); // число столбцов
-    int min=NumberInput("Введите максимальный элемент массива: ");
-    int max=NumberInput("Введите минимальный элемент массива: ");
+    int min=NumberInput("Введите минимальный элемент массива: ");
+    int max=NumberInput("Введите максимальный элемент массива: ");
 
     for (int i = 0; i < rows1; i++)
     {
