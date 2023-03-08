@@ -23,8 +23,11 @@ Console.WriteLine("Здравствуйте! Спасибо, что провер
 
 Console.WriteLine("Задайте размер массивов: ");
 
-int[,] twoDimIntArray1 = GenerationTwoDimIntArray();
-int[,] twoDimIntArray2 = twoDimIntArray1;
+int n=NumberInput("Введите количество строк массивов: ");
+int m=NumberInput("Введите количество столбцов массивов: ");
+
+int[,] twoDimIntArray1 = new int[n,m];
+int[,] twoDimIntArray2 = new int[n,m];
 
 int min=NumberInput("Введите минимальный элемент массивов: ");
 int max=NumberInput("Введите максимальный элемент массивов: ");
@@ -88,14 +91,6 @@ void PrintTwoDimIntArray(int[,] twoDimIntArray1)
         Console.WriteLine();
         // Console.WriteLine($" -> Сумма элементов строки {rowsSum[i]}"); Выведет сумму элеметов в важдой строке
     }
-}
-
-int[,] GenerationTwoDimIntArray()
-{
-    int n=NumberInput("Введите количество строк массивов: ");
-    int m=NumberInput("Введите количество столбцов массивов: ");
-    int[,] twoDimIntArray = new int[n,m];
-    return twoDimIntArray;
 }
 
 int NumberInput(string msg)
