@@ -27,32 +27,32 @@ void SpringFill2DimIntArray(int[,] array2Dim)
     int direction=0;
 
     array2Dim[0,0]=1;
-
+    bool b = true;  
+    
     int i = 2;
     while (i <= lngth)
     {
+        if (direction==0 & col+1 < array2Dim.GetLength(1)) {if (array2Dim[row,col+1]==0) col++; b=false;}
+        if (direction==1 & row+1 < array2Dim.GetLength(0)) {if (array2Dim[row+1,col]==0) row++; b=false;} 
+        if (direction==2 & col-1 >=0) {if (array2Dim[row,col-1]==0) col=col-1; b=false;} 
+        if (direction==3 & row-1 >=0) {if (array2Dim[row-1,col]==0) row=row-1; b=false;}
+
+        if (b) direction=ChooseDirection(array2Dim, row, col);
+
         if (array2Dim[row,col]==0) 
-            {
-                array2Dim[row,col]=i;
-                Console.WriteLine($"{row}, {col} -> {i} -> dir {direction}");
-                i++;
-                //Console.WriteLine($"{direction}");
-            }
-        //else direction=ChooseDirection(array2Dim, row, col); // Console.WriteLine($"ТУТ");
-
-        if (direction==0 & col+1 < array2Dim.GetLength(1)) col++; //if (array2Dim[row,col]!=0) col=col-1;
-        if (direction==1 & row+1 < array2Dim.GetLength(0)) row++; //if (array2Dim[row,col]!=0) row=row-1;
-        if (direction==2 & col-1 >=0) col=col-1; // if (array2Dim[row,col]!=0) col++;
-        if (direction==3 & row-1 >=0) row=row-1; // if (array2Dim[row,col]!=0) row++;
-
-        if (array2Dim[row,col]!=0) direction=ChooseDirection(array2Dim, row, col);
+        {
+            array2Dim[row,col]=i;
+            Console.WriteLine($"{row}, {col} -> {i} -> dir {direction}");
+            i++;
+            b = true;
+        }
+        else direction=ChooseDirection(array2Dim, row, col); 
     }   
 }
 
 int ChooseDirection(int[,] array2Dim1, int row, int col)
 {
         Console.WriteLine($"{row}, {col} -> {array2Dim1[row,col]} choose dir");
-        //Console.WriteLine($"{row}, {col-1} -> {array2Dim1[row,col-1]}");
         if (col+1<array2Dim1.GetLength(1))
         {
             if (array2Dim1[row,col+1]==0) return 0;
@@ -72,7 +72,7 @@ int ChooseDirection(int[,] array2Dim1, int row, int col)
         {
             if (array2Dim1[row-1,col]==0) return 3;
         }
-        return 1;
+        return 0;
 }
 
 void PrintTwoDimIntArray(int[,] twoDimIntArray1)
