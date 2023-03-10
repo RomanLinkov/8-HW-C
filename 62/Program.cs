@@ -14,23 +14,11 @@ int columns = NumberInput("Введите количество столбцов 
 
 int[,] twoDimIntArray = new int[rows,columns];
 
+SpringFill2DimIntArray(twoDimIntArray);
+
 PrintTwoDimIntArray(twoDimIntArray);
 
-void SpringFill2DimIntArray(int[] array2Dim)
-{
-    for (int i = 0; i < array2Dim.GetLength(0); i++)
-    {
-        for (int j = 0; j < array2Dim.GetLength(1); j++)
-        {
-            if (array2Dim[i,j]==0)
-            {
-
-            }      
-        }
-    }
-}
-
-void SpringFill2DimIntArray(int[] array2Dim)
+void SpringFill2DimIntArray(int[,] array2Dim)
 {
     int row = 0;
     int col = 0;
@@ -38,26 +26,53 @@ void SpringFill2DimIntArray(int[] array2Dim)
 
     int direction=0;
 
-    for (int i = 0; i < lngth; i++)
+    int i = 0;
+    while (i < lngth)
     {
-        array2Dim[row,col]=i;
+    
+        if (direction==0 & col+1 < array2Dim.GetLength(1)) col++;
+        if (direction==1 & row+1 < array2Dim.GetLength(0)) row++;
+        if (direction==2 & col-1 >=0) col=col-1;
+        if (direction==3 & row-1 >=0) row=row-1;
 
-        if (array2Dim(row,col+1)==0) direction=0;
-        if (array2Dim(row-1,col)==0) direction=1;
-        if (array2Dim(row,col-1)==0) direction=2;
-        if (array2Dim(row+1,col)==0) direction=3;
-
-        if (direction==0) col++;
-        if (direction==1) row--;
-        if (direction==2) col--;
-        if (direction==3) row++;
-        
+        if (row<array2Dim.GetLength(0) & col<array2Dim.GetLength(1) & row>=0 & col>=0)
+        {
+            if (array2Dim[row,col]==0) 
+            {
+                array2Dim[row,col]=i;
+                Console.WriteLine($"{row}, {col} -> {i}");
+                i++;
+            }
+           else direction=ChooseDirection(array2Dim, row, col); Console.WriteLine($"ТУТ");
+        }
+        else direction=ChooseDirection(array2Dim, row, col); Console.WriteLine($"здесь  123");
     }
-
 }
 
+int ChooseDirection(int[,] array2Dim1, int row, int col)
+{
+        Console.WriteLine($"{row}, {col} dir");
+        if (col+1<array2Dim1.GetLength(1))
+        {
+            if (array2Dim1[row,col+1]==0) return 0;
+        }
 
+        if (row+1<array2Dim1.GetLength(0)) 
+        {
+            if (array2Dim1[row+1,col]==0) return 1;
+        }
+       
+        if (col-1>=0) 
+        { 
+            if (array2Dim1[row,col-1]==0) return 2; //Console.WriteLine($"{2}");
+        }
 
+        if (row-1>=0) 
+        {
+            if (array2Dim1[row-1,col]==0) return 3;
+        }
+        return 0;
+}
 
 void PrintTwoDimIntArray(int[,] twoDimIntArray1)
 {
