@@ -26,8 +26,10 @@ void SpringFill2DimIntArray(int[,] array2Dim)
 
     int direction=0;
 
-    int i = 0;
-    while (i < lngth)
+    array2Dim[0,0]=1;
+
+    int i = 2;
+    while (i <= lngth)
     {
     
         if (direction==0 & col+1 < array2Dim.GetLength(1)) col++;
@@ -43,15 +45,16 @@ void SpringFill2DimIntArray(int[,] array2Dim)
                 Console.WriteLine($"{row}, {col} -> {i}");
                 i++;
             }
-           else direction=ChooseDirection(array2Dim, row, col); Console.WriteLine($"ТУТ");
+           else direction=ChooseDirection(array2Dim, row, col); // Console.WriteLine($"ТУТ");
         }
-        else direction=ChooseDirection(array2Dim, row, col); Console.WriteLine($"здесь  123");
-    }
+        else direction=ChooseDirection(array2Dim, row, col); // Console.WriteLine($"здесь  123");
+    }   i++;
 }
 
 int ChooseDirection(int[,] array2Dim1, int row, int col)
 {
-        Console.WriteLine($"{row}, {col} dir");
+        Console.WriteLine($"{row}, {col} -> {array2Dim1[row,col]}");
+        //Console.WriteLine($"{row}, {col-1} -> {array2Dim1[row,col-1]}");
         if (col+1<array2Dim1.GetLength(1))
         {
             if (array2Dim1[row,col+1]==0) return 0;
