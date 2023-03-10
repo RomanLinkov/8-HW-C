@@ -14,9 +14,15 @@
 Console.Clear();
 Console.WriteLine("Здравствуйте! Спасибо, что проверяете моё дз и особенно большое спасибо за комментарии!");
 
-int[,] twoDimIntArray = GenerationTwoDimIntArray();
+int n=NumberInput("Введите количество строк двумерного массива: ");
+int m=NumberInput("Введите количество столбцов двумерного массива: ");
 
-FillTwoDimIntArray(twoDimIntArray);
+int[,] twoDimIntArray = new int[n,m];;
+
+int min=NumberInput("Введите минимальный элемент массива: ");
+int max=NumberInput("Введите максимальный элемент массива: ");
+
+FillTwoDimIntArray(twoDimIntArray, min, max);
 
 PrintTwoDimIntArray(twoDimIntArray, "Сгенерированный изначальный массив: ");
 
@@ -52,12 +58,10 @@ int[,] SortTwoDimIntArray(int[,] twoDimIntArray3)
     return sortedArray;
 }
 
-void FillTwoDimIntArray(int[,] TwoDimIntArray2)
+void FillTwoDimIntArray(int[,] TwoDimIntArray2, int min, int max)
 {
     int rows1=TwoDimIntArray2.GetLength(0); // число строк
     int columns1=TwoDimIntArray2.GetLength(1); // число столбцов
-    int min=NumberInput("Введите минимальный элемент массива: ");
-    int max=NumberInput("Введите максимальный элемент массива: ");
 
     for (int i = 0; i < rows1; i++)
     {
@@ -82,14 +86,6 @@ void PrintTwoDimIntArray(int[,] twoDimIntArray1, string msg)
         }
         Console.WriteLine();
     }
-}
-
-int[,] GenerationTwoDimIntArray()
-{
-    int n=NumberInput("Введите количество строк двумерного массива: ");
-    int m=NumberInput("Введите количество столбцов двумерного массива: ");
-    int[,] twoDimIntArray = new int[n,m];
-    return twoDimIntArray;
 }
 
 int NumberInput(string msg)
